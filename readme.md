@@ -1,10 +1,10 @@
 # Workflows course
 
-Basic review of OS web dev tools for responsive SPA.
+Basic review of OS web dev tools for building a responsive SPA.
 
-## Lynda.com
+## Offered through Lynda.com
 
-Accessed through KCLS subscription.
+Accessed through my public library's subscription. Taking this as a top level refresher on some stuff I am already familiar with (more or less), such as Git and Sass, and also learning some new stuff, such as Gulp, that I want to apply to other projects. 
 
 ### Taught by Ray Villalobos
 
