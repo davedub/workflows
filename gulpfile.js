@@ -7,5 +7,5 @@ var 	gulp = require('gulp'),
 
 gulp.task('log', function () {
 	// use gutil variable
-	gutil.log("Workflows are awesome");
+	gutil.log("Workflows are super awesome");
 });
