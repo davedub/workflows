@@ -1,6 +1,7 @@
 var gulp = require('gulp'),
 	gutil = require('gulp-util'),
 	coffee = require('gulp-coffee'),
+	browserify = require('gulp-browserify'),
 	concat = require('gulp-concat');
 
 // tasks that are run when the gulp command is issued
@@ -31,6 +32,7 @@ gulp.task('coffee', function() {
 gulp.task('js', function() {
 	gulp.src(jsSources) // source
 		.pipe(concat('script.js')) // output
+		.pipe(browserify())
 		.pipe(gulp.dest('builds/development/js'))
 });
 
