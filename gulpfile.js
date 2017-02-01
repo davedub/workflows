@@ -2,7 +2,8 @@ var gulp = require('gulp'),
 	gutil = require('gulp-util'),
 	coffee = require('gulp-coffee'),
 	browserify = require('gulp-browserify'),
-	concat = require('gulp-concat');
+	compass = require('gulp-compass'),
+	concat = require('gulp-concat')
 
 // tasks that are run when the gulp command is issued
 // thereby triggering gulp
@@ -22,6 +23,8 @@ var jsSources = [
 	'components/scripts/template.js'
 ];
 
+var sassSources = ['components/sass/style.scss']
+
 gulp.task('coffee', function() {
 	gulp.src(coffeeSources)
 	.pipe(coffee({bare: true})
@@ -36,4 +39,16 @@ gulp.task('js', function() {
 		.pipe(gulp.dest('builds/development/js'))
 });
 
+gulp.task('compass', function(){
+	gulp.src(sassSources)
+	.pipe(compass({
+      		sass: 'components/sass',
+      		image: 'builds/development/images',
+		style: 'expanded',
+		comments: 'true',
+		sourcemap: 'true'
+	})
+		.on('error', gutil.log))
+		.pipe(gulp.dest('builds/development/css'))
+});
 

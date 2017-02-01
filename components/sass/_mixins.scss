@@ -21,7 +21,7 @@
   }
 
   @media (max-width: 800px) {
-   height: 150px;
+   height: 160px;
   }
 
   @media (max-width: 300px) {
@@ -29,11 +29,10 @@
   }
 }
 
-// clearing float spacing
-// easier to use than plain HTML
-// normally you have to add a class to the element you want cleared
-// so whenever I want to call it, just have it in the css.
-// example of a class that includes the function
+// clear float spacing - easier than using plain HTML
+// which is to add class to element you want cleared
+// so when called, just have it in css.
+// example of a class that includes function
 // .artgroup {
 //    @include clearfix
 //  }
