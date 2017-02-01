@@ -4,7 +4,7 @@ Basic review of OS web dev tools for building a responsive SPA.
 
 ## Offered through Lynda.com
 
-Accessed through my public library's subscription. Taking this as a top level refresher on some stuff I am already familiar with (more or less), such as Git and Sass, and also learning some new stuff, such as Gulp, that I want to apply to other projects. 
+Accessed through my public library's subscription. This is a refresher  course on Git and Sass, but also introduces me to Gulp and Browserify, which I have not used before.
 
 ### Taught by Ray Villalobos
 
