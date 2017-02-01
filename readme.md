@@ -4,7 +4,9 @@ Basic review of OS web dev tools for building a responsive SPA.
 
 ## Offered through Lynda.com
 
-Accessed through my public library's subscription. This is a refresher  course on Git and Sass, but also introduces me to Gulp and Browserify, which I have not used before.
+Accessed through my public library's subscription. This is a refresher  course on Git and Sass, but also introduces me to Gulp and Browserify, which I have not used before. 
+
+I am adding this single sentence paragraph to the readme file solely to check whether, by adding a global user.email config to git, it will identify a push to the repository by my profile rather than my user name. 
 
 ### Taught by Ray Villalobos
 
