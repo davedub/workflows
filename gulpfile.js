@@ -2,8 +2,9 @@ var gulp = require('gulp'),
 	gutil = require('gulp-util'),
 	coffee = require('gulp-coffee'),
 	browserify = require('gulp-browserify'),
-	compass = require('gulp-compass'),
-	concat = require('gulp-concat')
+	rubysass = require('gulp-ruby-sass'),
+	concat = require('gulp-concat'),
+	sourcemaps = require('gulp-sourcemaps');
 
 // tasks that are run when the gulp command is issued
 // thereby triggering gulp
@@ -23,8 +24,6 @@ var jsSources = [
 	'components/scripts/template.js'
 ];
 
-var sassSources = ['components/sass/style.scss']
-
 gulp.task('coffee', function() {
 	gulp.src(coffeeSources)
 	.pipe(coffee({bare: true})
@@ -39,16 +38,20 @@ gulp.task('js', function() {
 		.pipe(gulp.dest('builds/development/js'))
 });
 
-gulp.task('compass', function(){
-	gulp.src(sassSources)
-	.pipe(compass({
-      		sass: 'components/sass',
-      		image: 'builds/development/images',
+var paths = {
+    sassSrcPath: 'components/sass/style.scss',
+    sassDestPath: 'builds/development/css/style.css',
+    sassImagePath: 'builds/development/images'
+};
+
+gulp.task('rubysass', function(){
+	return rubysass(paths.sassSrcPath, {
 		style: 'expanded',
-		comments: 'true',
-		sourcemap: 'true'
+		lineNumbers: true,
+		compass: true
 	})
-		.on('error', gutil.log))
-		.pipe(gulp.dest('builds/development/css'))
+	.on('error', gutil.log)
+	.pipe(sourcemaps.write())
+	.pipe(gulp.dest(paths.sassDestPath))
 });
 
