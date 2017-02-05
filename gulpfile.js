@@ -62,5 +62,5 @@ gulp.task('watch', function() {
 
 });
 
-gulp.task('default', ['coffee', 'js', 'rubysass']);
+gulp.task('default', ['coffee', 'js', 'rubysass', 'watch']);
 
