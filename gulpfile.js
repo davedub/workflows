@@ -31,7 +31,7 @@ gulp.task('coffee', function() {
 	.pipe(gulp.dest('components/scripts'))
 });
 
-gulp.task('js', function() {
+gulp.task('js', ['coffee'], function() {
 	gulp.src(jsSources) // source
 		.pipe(concat('script.js')) // output
 		.pipe(browserify())
@@ -54,4 +54,5 @@ gulp.task('rubysass', function(){
 	.pipe(sourcemaps.write())
 	.pipe(gulp.dest(paths.sassDestPath))
 });
+gulp.task('default', ['coffee', 'js', 'rubysass']);
 
