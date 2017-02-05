@@ -31,7 +31,7 @@ gulp.task('coffee', function() {
 	.pipe(gulp.dest('components/scripts'))
 });
 
-gulp.task('js', ['coffee'], function() {
+gulp.task('js', function() {
 	gulp.src(jsSources) // source
 		.pipe(concat('script.js')) // output
 		.pipe(browserify())
@@ -40,7 +40,7 @@ gulp.task('js', ['coffee'], function() {
 
 var paths = {
     sassSrcPath: 'components/sass/style.scss',
-    sassDestPath: 'builds/development/css/style.css',
+    sassDestPath: 'builds/development/css',
     sassImagePath: 'builds/development/images'
 };
 
@@ -51,8 +51,16 @@ gulp.task('rubysass', function(){
 		compass: true
 	})
 	.on('error', gutil.log)
-	.pipe(sourcemaps.write())
+	// .pipe(sourcemaps.write())
 	.pipe(gulp.dest(paths.sassDestPath))
 });
+
+gulp.task('watch', function() {
+	gulp.watch(coffeeSources, ['coffee']);
+	gulp.watch(jsSources, ['js']);
+ 	gulp.watch('components/sass/*.scss', ['rubysass']);
+
+});
+
 gulp.task('default', ['coffee', 'js', 'rubysass']);
 
