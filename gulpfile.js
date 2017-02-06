@@ -7,6 +7,28 @@ var gulp = require('gulp'),
 	connect = require('gulp-connect'),
 	sourcemaps = require('gulp-sourcemaps')
 
+// for environment variable
+// default is development unles specified
+
+var 	env,
+	coffeeSources,
+	htmlSources,
+	jsonSources,
+	paths,
+	sassStyle,
+	outputDir;
+
+env = process.env.NODE_ENV || 'development';
+
+if (env==='development') {
+	sassStyle = 'expanded';
+	outputDir = 'builds/development/'
+} else {
+	sassStyle = 'compressed';
+	outputDir = 'builds/production/';
+}
+
+// for Chrome gulp devtools module
 module.exports = gulp;
 
 // tasks run when gulp command is issued
@@ -16,9 +38,9 @@ module.exports = gulp;
 // 	gutil.log("Workflows are super awesome");
 // });
 
-var coffeeSources = ['components/coffee/*.coffee']
+coffeeSources = ['components/coffee/*.coffee']
 
-var jsSources = [
+jsSources = [
 	'components/scripts/rclick.js',
 	'components/scripts/pixgrid.js',
 	'components/scripts/tagline.js',
@@ -36,19 +58,19 @@ gulp.task('js', function() {
 	gulp.src(jsSources) // source
 		.pipe(concat('script.js')) // output
 		.pipe(browserify())
-		.pipe(gulp.dest('builds/development/js'))
+		.pipe(gulp.dest(outputDir + '/js'))
 		.pipe(connect.reload())
 });
 
-var paths = {
-    sassSrcPath: 'components/sass/style.scss',
-    sassDestPath: 'builds/development/css',
-    sassImagePath: 'builds/development/images'
+paths = {
+	sassSrcPath: 'components/sass/style.scss',
+    	sassDestPath: outputDir +'/css',
+    	sassImagePath: outputDir +'/images'
 };
 
 gulp.task('rubysass', function(){
 	return rubysass(paths.sassSrcPath, {
-		style: 'expanded',
+		style: sassStyle,
 		lineNumbers: true,
 		compass: true
 	})
@@ -61,18 +83,18 @@ gulp.task('rubysass', function(){
 
 gulp.task('connect', function() {
 	connect.server({
-		root: 'builds/development',
+		root: outputDir,
 		livereload: true
 	})
 });
-var htmlSources = ['builds/development/*.html']
+htmlSources = [outputDir +'/*.html']
 
 gulp.task('html', function() {
 	gulp.src(htmlSources)
 	.pipe(connect.reload())
 });  
 
-var jsonSources = ['builds/development/js/*.json']
+jsonSources = [outputDir +'/js/*.json']
 
 gulp.task('json', function() {
 	gulp.src(jsonSources)
