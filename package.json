@@ -12,10 +12,13 @@
     "gulp-browserify": "^0.5.1",
     "gulp-coffee": "^2.3.3",
     "gulp-concat": "^2.6.1",
+    "gulp-connect": "^5.0.0",
+    "gulp-devtools": "0.0.3",
     "gulp-ruby-sass": "^2.1.1",
     "gulp-sourcemaps": "^2.4.0",
     "gulp-util": "^3.0.8",
     "jquery": "^3.1.1",
-    "mustache": "^2.3.0"
+    "mustache": "^2.3.0",
+    "npm": "^4.1.2"
   }
 }

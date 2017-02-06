@@ -77,7 +77,7 @@ $ = require('jquery');
 
 (fill = function(item) {
   return $('.tagline').append("" + item);
-})('Crazy how creative these minds are in Art');
+})('The most creative minds in Art, I guarantee it');
 
 fill;
 

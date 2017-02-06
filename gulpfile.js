@@ -4,12 +4,13 @@ var gulp = require('gulp'),
 	browserify = require('gulp-browserify'),
 	rubysass = require('gulp-ruby-sass'),
 	concat = require('gulp-concat'),
-	sourcemaps = require('gulp-sourcemaps');
+	connect = require('gulp-connect'),
+	sourcemaps = require('gulp-sourcemaps')
 
-// tasks that are run when the gulp command is issued
-// thereby triggering gulp
-// are anonymous functions
+module.exports = gulp;
 
+// tasks run when gulp command is issued
+// thereby anonymous functions - E.G.
 // gulp.task('log', function () {
 // 	// use gutil variable
 // 	gutil.log("Workflows are super awesome");
@@ -36,6 +37,7 @@ gulp.task('js', function() {
 		.pipe(concat('script.js')) // output
 		.pipe(browserify())
 		.pipe(gulp.dest('builds/development/js'))
+		.pipe(connect.reload())
 });
 
 var paths = {
@@ -53,14 +55,24 @@ gulp.task('rubysass', function(){
 	.on('error', gutil.log)
 	// .pipe(sourcemaps.write())
 	.pipe(gulp.dest(paths.sassDestPath))
+	.pipe(connect.reload())
+
 });
 
 gulp.task('watch', function() {
 	gulp.watch(coffeeSources, ['coffee']);
 	gulp.watch(jsSources, ['js']);
  	gulp.watch('components/sass/*.scss', ['rubysass']);
-
 });
 
-gulp.task('default', ['coffee', 'js', 'rubysass', 'watch']);
+gulp.task('connect', function() {
+	connect.server({
+		root: 'builds/development',
+		livereload: true
+	})
+});
+
+
+gulp.task('default', 
+	['coffee', 'js', 'rubysass', 'connect', 'watch']);
 
