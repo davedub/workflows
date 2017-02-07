@@ -8,6 +8,7 @@ var gulp = require('gulp'),
 	gulpif = require('gulp-if'),
 	uglify = require('gulp-uglify'),
 	minifyHTML = require('gulp-minify-html'),
+	minifyJSON = require('gulp-json-minify'),
 	sourcemaps = require('gulp-sourcemaps')
 
 // for environment variable
@@ -62,7 +63,7 @@ gulp.task('js', function() {
 		.pipe(concat('script.js')) // output
 		.pipe(browserify())
 		.pipe(gulpif(env === 'production', uglify()))
-		.pipe(gulp.dest(outputDir + '/js'))
+		.pipe(gulp.dest(outputDir + 'js'))
 		.pipe(connect.reload())
 });
 
@@ -100,10 +101,12 @@ gulp.task('html', function() {
 	.pipe(connect.reload())
 });  
 
-jsonSources = [outputDir +'/js/*.json']
+jsonSources = ['builds/development/js/*.json']
 
 gulp.task('json', function() {
 	gulp.src(jsonSources)
+	.pipe(gulpif(env === 'production', minifyJSON()))
+	.pipe(gulpif(env === 'production', gulp.dest(outputDir + 'js')))
 	.pipe(connect.reload())
 });  
 
@@ -112,6 +115,7 @@ gulp.task('watch', function() {
 	gulp.watch(jsSources, ['js']);
  	gulp.watch('components/sass/*.scss', ['rubysass']);
 	gulp.watch('builds/development/*html', ['html']);
+	gulp.watch('builds/development/js/*json', ['json']);
 	gulp.watch(jsonSources, ['json']);
 });
 
