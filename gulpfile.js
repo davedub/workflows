@@ -5,6 +5,8 @@ var gulp = require('gulp'),
 	rubysass = require('gulp-ruby-sass'),
 	concat = require('gulp-concat'),
 	connect = require('gulp-connect'),
+	gulpif = require('gulp-if'),
+	uglify = require('gulp-uglify'),
 	sourcemaps = require('gulp-sourcemaps')
 
 // for environment variable
@@ -58,6 +60,7 @@ gulp.task('js', function() {
 	gulp.src(jsSources) // source
 		.pipe(concat('script.js')) // output
 		.pipe(browserify())
+		.pipe(gulpif(env === 'production', uglify()))
 		.pipe(gulp.dest(outputDir + '/js'))
 		.pipe(connect.reload())
 });
