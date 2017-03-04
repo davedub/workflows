@@ -4,10 +4,8 @@ Basic review of OS web dev tools for building a responsive SPA.
 
 ## Offered through Lynda.com
 
-Accessed through my public library's subscription. This is a refresher  course on Git and Sass, but also introduces me to Gulp and Browserify, which I have not used before. 
+This course was a useful refresher course on Git and Sass, and also introduced Gulp and Browserify. The course instructor is [Ray Villalobos](https://github.com/planetoftheweb).
 
-I am adding this single sentence paragraph to the readme file solely to check whether, by adding a global user.email config to git, it will identify a push to the repository by my profile rather than my user name. 
+### Postscript: Browserify issues
 
-### Taught by Ray Villalobos
-
-Ray is a good instructor. See his [Github page](https://github.com/planetoftheweb) for more information.
+The course relies on [gulp-browserify plugin](https://github.com/deepak1556/gulp-browserify) which I have since learned [from Hafiz Ismai's article](https://wehavefaces.net/gulp-browserify-the-gulp-y-way-bb359b3f9623#.nmb33b3tn) has been [blacklisted by Gulp](https://github.com/gulpjs/plugins/issues/47). The preferred approach is to use vainilla [browserify](https://github.com/substack/node-browserify) with [vinyl transform](https://www.npmjs.com/package/vinyl-transform). But even this appears to be problematic and the [better approach](https://github.com/substack/node-browserify/issues/1198) may be to use [through2](https://www.npmjs.com/package/through2). 
